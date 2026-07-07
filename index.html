@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#3d0a1f" />
+  <meta name="description" content="Descubra o vinho ideal para você — doçura, corpo, harmonização e mais." />
+  <title>Vinho 24 Horas · Guia de Vinhos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+</head>
+<body>
+
+  <!-- Tela: seleção de adega (quando não há ?adega= na URL) -->
+  <section id="tela-selecao" class="tela hidden">
+    <div class="selecao-wrap">
+      <div class="marca marca-grande">
+        <span class="marca-vinho">VINHO</span>
+        <span class="marca-24h">24 HORAS</span>
+      </div>
+      <p class="selecao-sub">Escolha a sua adega para começar</p>
+      <div id="lista-adegas" class="lista-adegas"></div>
+    </div>
+  </section>
+
+  <!-- Tela: catálogo da adega -->
+  <section id="tela-catalogo" class="tela hidden">
+    <header class="topo">
+      <div class="topo-marca">
+        <span class="marca-vinho">VINHO</span><span class="marca-24h">24H</span>
+      </div>
+      <div class="topo-adega" id="topo-adega"></div>
+    </header>
+
+    <div class="hero">
+      <h1 class="hero-titulo">Qual garrafa é a sua?</h1>
+      <p class="hero-sub">Todas com o mesmo preço. Use os filtros e descubra a que mais combina com você.</p>
+    </div>
+
+    <div class="busca-wrap">
+      <input id="busca" class="busca" type="search" inputmode="search"
+             placeholder="Buscar por nome, uva ou país…" autocomplete="off" />
+    </div>
+
+    <div class="filtros" id="filtros"></div>
+
+    <div class="resultado-info" id="resultado-info"></div>
+
+    <main id="grade" class="grade"></main>
+
+    <div id="vazio" class="vazio hidden">
+      <p>Nenhum vinho encontrado com esses filtros.</p>
+      <button class="btn-limpar" id="btn-limpar-vazio">Limpar filtros</button>
+    </div>
+
+    <footer class="rodape">
+      <p>Guia informativo · Beba com moderação · Venda proibida para menores de 18 anos.</p>
+    </footer>
+  </section>
+
+  <!-- Overlay: ficha do vinho -->
+  <div id="ficha" class="ficha-overlay hidden" role="dialog" aria-modal="true">
+    <div class="ficha-conteudo" id="ficha-conteudo"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

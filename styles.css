@@ -1,0 +1,357 @@
+/* ==========================================================================
+   VINHO 24 HORAS — Estilos
+   Tema escuro "vinho", mobile-first. Paleta: bordô + dourado.
+   ========================================================================== */
+
+:root {
+  --bordo-escuro: #2a0715;
+  --bordo: #3d0a1f;
+  --bordo-claro: #5a1130;
+  --vinho: #7d1935;
+  --dourado: #d4a544;
+  --dourado-claro: #f0d089;
+  --creme: #f7efe8;
+  --texto: #f4e9df;
+  --texto-suave: #c9a9b3;
+  --card: #45122a;
+  --card-borda: #642040;
+  --verde-gelado: #4fb0c6;
+  --sombra: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --raio: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #5a1130 0%, transparent 60%),
+    linear-gradient(180deg, var(--bordo) 0%, var(--bordo-escuro) 100%);
+  background-attachment: fixed;
+  color: var(--texto);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.hidden { display: none !important; }
+
+/* ---- Marca ---- */
+.marca-vinho, .marca-24h { font-weight: 800; letter-spacing: 1px; }
+.marca-vinho { color: var(--dourado-claro); }
+.marca-24h {
+  color: var(--bordo-escuro);
+  background: var(--dourado);
+  padding: 1px 7px;
+  border-radius: 6px;
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   TELA DE SELEÇÃO DE ADEGA
+   ========================================================================== */
+.selecao-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  text-align: center;
+}
+.marca-grande { font-size: 34px; margin-bottom: 8px; }
+.marca-grande .marca-24h { font-size: 30px; }
+.selecao-sub { color: var(--texto-suave); margin-bottom: 28px; }
+.lista-adegas { width: 100%; display: grid; gap: 14px; }
+.adega-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--card-borda);
+  border-radius: var(--raio);
+  color: var(--texto);
+  cursor: pointer;
+  transition: transform .15s, border-color .15s;
+}
+.adega-btn:hover { transform: translateY(-2px); border-color: var(--dourado); }
+.adega-btn b { display: block; font-size: 18px; color: var(--dourado-claro); }
+.adega-btn span { color: var(--texto-suave); font-size: 14px; }
+
+/* ==========================================================================
+   TOPO / HERO
+   ========================================================================== */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(42, 7, 21, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-borda);
+}
+.topo-marca { font-size: 18px; }
+.topo-adega { font-size: 13px; color: var(--texto-suave); text-align: right; max-width: 55%; }
+
+.hero { padding: 24px 18px 8px; max-width: 640px; margin: 0 auto; }
+.hero-titulo { font-size: 26px; color: var(--dourado-claro); letter-spacing: .3px; }
+.hero-sub { color: var(--texto-suave); font-size: 15px; margin-top: 6px; }
+
+/* ==========================================================================
+   BUSCA + FILTROS
+   ========================================================================== */
+.busca-wrap { padding: 14px 18px 6px; max-width: 640px; margin: 0 auto; }
+.busca {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--card-borda);
+  background: var(--card);
+  color: var(--texto);
+  font-size: 16px;
+  outline: none;
+}
+.busca::placeholder { color: var(--texto-suave); }
+.busca:focus { border-color: var(--dourado); }
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 18px;
+  max-width: 640px;
+  margin: 0 auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.filtros::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid var(--card-borda);
+  background: transparent;
+  color: var(--texto-suave);
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+}
+.chip:hover { border-color: var(--dourado); }
+.chip.ativo {
+  background: var(--dourado);
+  color: var(--bordo-escuro);
+  border-color: var(--dourado);
+  font-weight: 700;
+}
+.chip.chip-gelado.ativo { background: var(--verde-gelado); border-color: var(--verde-gelado); color: #04222a; }
+
+.resultado-info {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4px 18px;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   GRADE DE VINHOS
+   ========================================================================== */
+.grade {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 18px 40px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-borda);
+  border-radius: var(--raio);
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  transition: transform .15s, border-color .15s;
+  position: relative;
+  overflow: hidden;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--dourado); }
+.card-foto {
+  flex: 0 0 auto;
+  width: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-foto svg, .card-foto img {
+  width: 58px;
+  height: 112px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,.35));
+}
+.card-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card-topo { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.tag-tipo {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.tag-tinto { background: #7d1935; color: #ffd9e2; }
+.tag-branco { background: #b7a13a; color: #2a2400; }
+.tag-rose { background: #c96b8a; color: #3a0016; }
+.tag-espumante { background: #4a8f9e; color: #01252c; }
+
+.selo-gelado {
+  font-size: 11px;
+  color: var(--verde-gelado);
+  border: 1px solid var(--verde-gelado);
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.card-nome { font-size: 16px; font-weight: 700; color: var(--texto); line-height: 1.2; }
+.card-uva { font-size: 13px; color: var(--texto-suave); }
+.card-origem { font-size: 12px; color: var(--texto-suave); margin-top: auto; }
+
+.mini-medidas { display: grid; gap: 5px; margin-top: 4px; }
+.mini-linha { display: flex; align-items: center; gap: 7px; }
+.mini-rotulo { font-size: 11px; color: var(--texto-suave); width: 48px; flex: 0 0 auto; }
+.barra { flex: 1; height: 5px; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; }
+.barra-fill { height: 100%; background: var(--dourado); border-radius: 999px; }
+
+/* ==========================================================================
+   ESTADO VAZIO / RODAPÉ
+   ========================================================================== */
+.vazio { text-align: center; padding: 40px 20px; color: var(--texto-suave); }
+.btn-limpar {
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--dourado);
+  background: transparent;
+  color: var(--dourado-claro);
+  cursor: pointer;
+}
+.rodape {
+  text-align: center;
+  padding: 24px 18px 40px;
+  color: var(--texto-suave);
+  font-size: 12px;
+  border-top: 1px solid var(--card-borda);
+  max-width: 640px;
+  margin: 20px auto 0;
+}
+
+/* ==========================================================================
+   FICHA DO VINHO (OVERLAY)
+   ========================================================================== */
+.ficha-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(10, 2, 6, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fade .2s ease;
+}
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.ficha-conteudo {
+  width: 100%;
+  max-width: 640px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, var(--bordo-claro), var(--bordo-escuro));
+  border-radius: 24px 24px 0 0;
+  border-top: 3px solid var(--dourado);
+  padding: 8px 20px 32px;
+  animation: subir .25s ease;
+}
+@keyframes subir { from { transform: translateY(40px); } to { transform: translateY(0); } }
+.ficha-puxador { width: 44px; height: 5px; border-radius: 999px; background: var(--texto-suave); opacity: .5; margin: 8px auto 16px; }
+.ficha-fechar {
+  position: sticky; top: 0; float: right;
+  background: rgba(0,0,0,.3); border: none; color: var(--texto);
+  width: 34px; height: 34px; border-radius: 999px; font-size: 18px; cursor: pointer;
+}
+.ficha-foto {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 14px;
+}
+.ficha-foto svg, .ficha-foto img {
+  height: 200px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0,0,0,.45));
+}
+.ficha-tipo-linha { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.ficha-nome { font-size: 26px; color: var(--dourado-claro); line-height: 1.15; }
+.ficha-produtor { color: var(--texto-suave); font-size: 14px; margin-bottom: 14px; }
+.ficha-origem-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0;
+}
+.ficha-dado { background: rgba(0,0,0,.2); border-radius: 12px; padding: 10px 12px; }
+.ficha-dado span { display: block; font-size: 11px; color: var(--texto-suave); text-transform: uppercase; letter-spacing: .5px; }
+.ficha-dado b { font-size: 15px; color: var(--texto); font-weight: 600; }
+
+.ficha-secao-titulo { font-size: 13px; text-transform: uppercase; letter-spacing: .5px; color: var(--dourado); margin: 20px 0 10px; }
+
+.medida { margin-bottom: 14px; }
+.medida-topo { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.medida-topo b { color: var(--texto); }
+.medida-topo span { color: var(--texto-suave); }
+.medida-escala { display: flex; gap: 4px; }
+.pip { flex: 1; height: 8px; border-radius: 999px; background: rgba(255,255,255,.12); }
+.pip.on { background: var(--dourado); }
+
+.ficha-texto { color: var(--texto); font-size: 15px; margin-bottom: 8px; }
+.ficha-destaque {
+  background: rgba(212,165,68,.12);
+  border: 1px solid rgba(212,165,68,.35);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 16px 0;
+  font-size: 15px;
+}
+.ficha-destaque b { color: var(--dourado-claro); }
+.ficha-harmoniza { display: grid; gap: 10px; }
+.harm-item { display: flex; gap: 10px; align-items: flex-start; }
+.harm-icone { font-size: 18px; flex: 0 0 auto; }
+.harm-item div span { display: block; font-size: 12px; color: var(--texto-suave); }
+.harm-item div p { font-size: 14px; }
+
+.selo-gelado-ficha {
+  display: inline-block;
+  background: var(--verde-gelado); color: #04222a;
+  font-weight: 700; font-size: 13px;
+  padding: 4px 12px; border-radius: 999px;
+}
+
+@media (min-width: 700px) {
+  .ficha-overlay { align-items: center; }
+  .ficha-conteudo { border-radius: 24px; max-height: 88vh; }
+}
