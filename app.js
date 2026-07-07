@@ -11,7 +11,7 @@
      2) Arquivo → Compartilhar → Publicar na web → escolha a aba → formato CSV.
      3) Cole aqui o link .csv publicado.
    -------------------------------------------------------------------------- */
-const SHEET_CSV_URL = "";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLsX4VZuxj_ziZXO4UmLKmd3l3ngpKwaNPcDicBCZoB63y5dP0VcVdH93uW731E9uPAPSOe-6pho-5/pub?output=csv";
 
 // ---- Rótulos amigáveis para as escalas (0 a 5) --------------------------
 const ESCALAS = {
