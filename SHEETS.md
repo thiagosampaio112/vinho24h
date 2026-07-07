@@ -4,16 +4,18 @@ O app já vem pronto para ler os vinhos de uma planilha do Google Sheets — ass
 você e sua esposa atualizam a lista **sem mexer no código**. Enquanto não configurar,
 ele usa os vinhos de `data.js`.
 
-## Passo 1 — Criar a planilha
+## Passo 1 — Criar a planilha (JÁ VEM PRONTA)
 
-Crie uma planilha nova no Google Sheets. Na **primeira linha**, coloque exatamente
-estes títulos de coluna (pode copiar e colar):
+Você não precisa digitar nada. O arquivo **`vinhos-google-sheets.csv`** (na pasta do
+projeto) já tem os 12 vinhos e as colunas certas. Para virar uma planilha:
 
-```
-id	adegas	nome	produtor	tipo	uva	pais	regiao	safra	alcool	docura	corpo	taninos	acidez	gelavel	temperatura	harmonizacao	queijos	descricao	combina_se_voce_gosta	foto
-```
+1. Acesse **sheets.google.com** e crie uma planilha em branco (ou abra uma existente).
+2. Menu **Arquivo → Importar → Fazer upload** e selecione o arquivo `vinhos-google-sheets.csv`.
+3. Em "Importar arquivo", escolha **Substituir a planilha atual** e clique em **Importar dados**.
 
-Cada linha abaixo é um vinho. Regras dos campos:
+Pronto: a planilha nasce preenchida. Agora é só editar/adicionar vinhos por ali.
+
+### Regras das colunas (para quando for editar)
 
 | Coluna | Como preencher |
 |---|---|
