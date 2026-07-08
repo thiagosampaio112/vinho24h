@@ -13,6 +13,9 @@
    -------------------------------------------------------------------------- */
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQLsX4VZuxj_ziZXO4UmLKmd3l3ngpKwaNPcDicBCZoB63y5dP0VcVdH93uW731E9uPAPSOe-6pho-5/pub?output=csv";
 
+// WhatsApp de contato da empresa (formato internacional: 55 + DDD + número)
+const WHATSAPP = "5599988182666";
+
 // ---- Rótulos amigáveis para as escalas (0 a 5) --------------------------
 const ESCALAS = {
   docura:  { titulo: "Doçura",  niveis: ["Bem seco", "Seco", "Meio-seco", "Suave", "Doce", "Bem doce"] },
@@ -178,6 +181,13 @@ function abrirCatalogo(slug) {
   $("#tela-selecao").classList.add("hidden");
   $("#tela-catalogo").classList.remove("hidden");
   $("#topo-adega").textContent = ADEGAS[slug].nome;
+
+  // Link do WhatsApp já com uma mensagem que identifica a unidade
+  const wpp = $("#btn-wpp");
+  if (wpp) {
+    const msg = encodeURIComponent(`Olá! Preciso de ajuda na ${ADEGAS[slug].nome}.`);
+    wpp.href = `https://wa.me/${WHATSAPP}?text=${msg}`;
+  }
 
   montarFiltros();
   ligarBusca();
