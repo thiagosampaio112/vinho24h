@@ -40,14 +40,24 @@
 
     .topo { width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-    /* Logo oficial: VINH + "O" formado por um círculo com 24h dentro */
-    .logo { font-weight: 800; font-size: 1.35cm; letter-spacing: 0.02cm; line-height: 1; display: flex; align-items: center; }
+    /* Logo oficial: VINH + "O" = quadrado grosso de cantos arredondados,
+       com o "24h" quebrando o traço no canto superior direito. */
+    .logo { font-weight: 800; font-size: 1.4cm; letter-spacing: 0.02cm; line-height: 1; display: flex; align-items: center; }
     .logo .o24 {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 1.05cm; height: 1.05cm; border-radius: 50%;
-      border: 0.07cm solid #fff;
-      font-size: 0.38cm; font-weight: 800; letter-spacing: 0;
-      margin-left: 0.03cm;
+      position: relative;
+      width: 1.02cm; height: 1.02cm;
+      border: 0.17cm solid #fff;        /* traço grosso */
+      border-radius: 0.3cm;             /* quase quadrado, cantos arredondados */
+      margin-left: 0.06cm;
+      flex: 0 0 auto;
+    }
+    .logo .o24 .tf {
+      position: absolute;
+      top: -0.17cm; right: -0.02cm;     /* fica sobre o traço, "abrindo" o O */
+      background: var(--bordo);          /* mascara o traço branco atrás */
+      color: #fff;
+      font-size: 0.4cm; font-weight: 800; letter-spacing: -0.01cm;
+      line-height: 1; padding: 0.02cm 0.05cm;
     }
     .tagline { font-size: 0.3cm; font-weight: 600; letter-spacing: 0.09cm; margin-top: 0.16cm; text-align: center; text-transform: uppercase; }
 
@@ -118,7 +128,7 @@
         card.className = "cartaz";
         card.innerHTML = `
           <div class="topo">
-            <div class="logo">VINH<span class="o24">24h</span></div>
+            <div class="logo">VINH<span class="o24"><span class="tf">24h</span></span></div>
             <div class="tagline">Sua adega particular, a qualquer hora</div>
             <div class="faixa">GUIA DE VINHOS</div>
             <div class="chamada">Não sabe qual garrafa escolher?<br>Escaneie e descubra o vinho ideal pra você! 🍷</div>
