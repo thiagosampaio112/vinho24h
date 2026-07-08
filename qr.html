@@ -40,13 +40,16 @@
 
     .topo { width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-    /* Logo VINHO 24h */
-    .logo { font-weight: 800; font-size: 1.15cm; letter-spacing: 1px; line-height: 1; display: flex; align-items: flex-start; gap: 0.12cm; }
-    .logo .badge {
-      font-size: 0.42cm; font-weight: 800; letter-spacing: 0;
-      border: 0.055cm solid #fff; border-radius: 999px;
-      padding: 0.06cm 0.16cm; margin-top: 0.08cm;
+    /* Logo oficial: VINH + "O" formado por um círculo com 24h dentro */
+    .logo { font-weight: 800; font-size: 1.35cm; letter-spacing: 0.02cm; line-height: 1; display: flex; align-items: center; }
+    .logo .o24 {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.05cm; height: 1.05cm; border-radius: 50%;
+      border: 0.07cm solid #fff;
+      font-size: 0.38cm; font-weight: 800; letter-spacing: 0;
+      margin-left: 0.03cm;
     }
+    .tagline { font-size: 0.3cm; font-weight: 600; letter-spacing: 0.09cm; margin-top: 0.16cm; text-align: center; text-transform: uppercase; }
 
     /* Faixa branca (sangra até as bordas) */
     .faixa {
@@ -64,8 +67,7 @@
     .chamada { text-align: center; font-size: 0.56cm; font-weight: 600; line-height: 1.35; margin-top: 0.55cm; }
 
     /* Linha da seta + QR */
-    .qr-row { display: flex; align-items: center; justify-content: center; gap: 0.15cm; width: 100%; }
-    .seta { width: 2.3cm; height: 2.6cm; flex: 0 0 auto; }
+    .qr-row { display: flex; align-items: center; justify-content: center; width: 100%; }
     .qr-box { background: #fff; padding: 0.32cm; border-radius: 0.32cm; line-height: 0; }
     .qr-box img { width: 6.6cm; height: 6.6cm; display: block; }
 
@@ -97,13 +99,6 @@
     // URL do site publicado. Troque aqui se um dia mudar para o domínio próprio.
     const URL_BASE = "https://thiagosampaio112.github.io/vinho24h/";
 
-    // Seta curva branca apontando para o QR
-    const SETA = `
-      <svg class="seta" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 6 C 40 8, 54 26, 44 54" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
-        <path d="M31 49 L45 58 L49 42" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>`;
-
     function gerarQR(url) {
       const qr = qrcode(0, "H");     // alta correção de erro (resiste a arranhões)
       qr.addData(url);
@@ -123,12 +118,12 @@
         card.className = "cartaz";
         card.innerHTML = `
           <div class="topo">
-            <div class="logo">VINHO<span class="badge">24h</span></div>
+            <div class="logo">VINH<span class="o24">24h</span></div>
+            <div class="tagline">Sua adega particular, a qualquer hora</div>
             <div class="faixa">GUIA DE VINHOS</div>
             <div class="chamada">Não sabe qual garrafa escolher?<br>Escaneie e descubra o vinho ideal pra você! 🍷</div>
           </div>
           <div class="qr-row">
-            ${SETA}
             <div class="qr-box"><img src="${dataUrl}" alt="QR Code ${info.nome}" /></div>
           </div>
           <div class="rodape"><b>${info.nome}</b><br>Aponte a câmera do celular para o código</div>
