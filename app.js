@@ -107,6 +107,7 @@ function normalizarLinha(row) {
   const sim = (x) => /^(sim|s|true|1|x)$/i.test(String(x).trim());
   return {
     id: row.id || (row.nome || "").toLowerCase().replace(/\s+/g, "-"),
+    codigo: row.codigo || "",
     adegas: String(row.adegas || "").split(/[;,]/).map((s) => s.trim()).filter(Boolean),
     nome: row.nome, produtor: row.produtor, tipo: row.tipo, uva: row.uva,
     pais: row.pais, regiao: row.regiao, safra: row.safra, alcool: num(row.alcool),

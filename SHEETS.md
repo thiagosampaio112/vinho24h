@@ -7,27 +7,34 @@ ele usa os vinhos de `data.js`.
 ## Passo 1 — Criar a planilha (JÁ VEM PRONTA)
 
 Você não precisa digitar nada. O arquivo **`vinhos-google-sheets.csv`** (na pasta do
-projeto) já tem os 12 vinhos e as colunas certas. Para virar uma planilha:
+projeto) já tem os 15 vinhos reais da Unidade Ecopark IV e as colunas certas.
+Para virar uma planilha:
 
 1. Acesse **sheets.google.com** e crie uma planilha em branco (ou abra uma existente).
 2. Menu **Arquivo → Importar → Fazer upload** e selecione o arquivo `vinhos-google-sheets.csv`.
-3. Em "Importar arquivo", escolha **Substituir a planilha atual** e clique em **Importar dados**.
+3. Em "Importar arquivo", escolha **Substituir a planilha atual**.
+4. **DESMARQUE** a opção *"Converter texto em números, datas e fórmulas"* — assim os
+   códigos com zero à esquerda (ex: `00562`) não viram `562`.
+5. Clique em **Importar dados**.
 
 Pronto: a planilha nasce preenchida. Agora é só editar/adicionar vinhos por ali.
+
+> **Já publicou a planilha antes?** Se você re-importar (Substituir a planilha atual)
+> na MESMA planilha que já está publicada, o link `output=csv` continua o mesmo e o
+> site atualiza sozinho — não precisa republicar nem mexer no `app.js` de novo.
 
 ### Regras das colunas (para quando for editar)
 
 | Coluna | Como preencher |
 |---|---|
-| `id` | um apelido único sem espaços, ex: `malbec-reserva` |
-| `adegas` | slugs das adegas separados por vírgula, ex: `unidade-centro, unidade-praia` |
+| `id` | um apelido único sem espaços, ex: `crotta-malbec-reserva` |
+| `codigo` | código do vinho no seu sistema de estoque (só para conferência) |
+| `adegas` | slugs das adegas separados por **ponto e vírgula**, ex: `ecopark-iv; unidade-2` |
 | `tipo` | `Tinto`, `Branco`, `Rosé` ou `Espumante` |
 | `docura`, `corpo`, `taninos`, `acidez` | número de **0 a 5** |
 | `gelavel` | `sim` ou deixe vazio |
 | `foto` | link de uma imagem (opcional). Vazio = garrafa ilustrada |
 | demais | texto livre |
-
-> Dica: copie os dados de `data.js` para não começar do zero.
 
 ## Passo 2 — Publicar a planilha em CSV
 
