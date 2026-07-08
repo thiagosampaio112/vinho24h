@@ -46,14 +46,15 @@
     .logo .o24 {
       position: relative;
       width: 1.02cm; height: 1.02cm;
-      border: 0.17cm solid #fff;        /* traço grosso */
+      border: 0.19cm solid #fff;        /* traço grosso */
       border-radius: 0.3cm;             /* quase quadrado, cantos arredondados */
       margin-left: 0.06cm;
       flex: 0 0 auto;
     }
     .logo .o24 .tf {
       position: absolute;
-      top: -0.17cm; right: -0.02cm;     /* fica sobre o traço, "abrindo" o O */
+      top: 50%; right: 0;                /* quebra o traço no LADO DIREITO */
+      transform: translate(50%, -50%);
       background: var(--bordo);          /* mascara o traço branco atrás */
       color: #fff;
       font-size: 0.4cm; font-weight: 800; letter-spacing: -0.01cm;
