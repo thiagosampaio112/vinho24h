@@ -412,46 +412,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !$("#ficha").classList.contains("hidden")) fecharFicha();
 });
 
-// ---- Convite para instalar como app (PWA) ------------------------------
-(function () {
-  const bar = $("#install-bar");
-  if (!bar) return;
-  const emApp = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-  const jaDispensou = () => { try { return localStorage.getItem("v24h-install") === "off"; } catch (e) { return false; } };
-  let deferred = null;
-
-  function mostrar(dicaIos) {
-    if (emApp || jaDispensou()) return;
-    if (dicaIos) {
-      $("#install-msg").textContent = "📲 Toque em Compartilhar e “Adicionar à Tela de Início”";
-      $("#install-btn").classList.add("hidden");
-    }
-    bar.classList.remove("hidden");
-  }
-
-  // Android/Chrome: instalação nativa
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferred = e;
-    mostrar(false);
-  });
-  $("#install-btn").addEventListener("click", async () => {
-    if (!deferred) return;
-    deferred.prompt();
-    await deferred.userChoice;
-    deferred = null;
-    bar.classList.add("hidden");
-  });
-  $("#install-close").addEventListener("click", () => {
-    bar.classList.add("hidden");
-    try { localStorage.setItem("v24h-install", "off"); } catch (e) {}
-  });
-
-  // iPhone/Safari não dispara o evento acima — mostra a dica manual
-  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  if (iOS && !emApp) setTimeout(() => mostrar(true), 1800);
-})();
-
 // ---- Service worker (PWA / offline) ------------------------------------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
