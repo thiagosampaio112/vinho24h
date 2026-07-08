@@ -82,7 +82,9 @@
 
     const container = document.getElementById("cartazes");
 
-    Object.entries(ADEGAS).forEach(([slug, info]) => {
+    Object.entries(ADEGAS)
+      .filter(([, info]) => info.ativa !== false)  // só unidades ativas
+      .forEach(([slug, info]) => {
       const url = URL_BASE + "?adega=" + slug;
       const dataUrl = gerarQR(url);
 

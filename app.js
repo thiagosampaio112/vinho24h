@@ -78,9 +78,15 @@ async function iniciar() {
 
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("adega");
+  const ativas = Object.keys(ADEGAS).filter((s) => ADEGAS[s].ativa !== false);
 
-  if (slug && ADEGAS[slug]) abrirCatalogo(slug);
-  else abrirSelecao();
+  if (slug && ADEGAS[slug] && ADEGAS[slug].ativa !== false) {
+    abrirCatalogo(slug);          // QR da unidade → vai direto
+  } else if (ativas.length === 1) {
+    abrirCatalogo(ativas[0]);     // só uma unidade ativa → pula a escolha
+  } else {
+    abrirSelecao();               // várias ativas → mostra a escolha
+  }
 
   window.addEventListener("popstate", () => {
     if (location.hash !== "#ficha") fecharFicha();
@@ -151,7 +157,9 @@ function abrirSelecao() {
 
   const lista = $("#lista-adegas");
   lista.innerHTML = "";
-  Object.entries(ADEGAS).forEach(([slug, info]) => {
+  Object.entries(ADEGAS)
+    .filter(([, info]) => info.ativa !== false)  // esconde unidades não ativas
+    .forEach(([slug, info]) => {
     const btn = el("button", "adega-btn");
     btn.innerHTML = `<b>${info.nome}</b><span>${info.cidade} · toque para ver os vinhos</span>`;
     btn.addEventListener("click", () => {
@@ -403,6 +411,46 @@ $("#btn-limpar-vazio").addEventListener("click", () => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !$("#ficha").classList.contains("hidden")) fecharFicha();
 });
+
+// ---- Convite para instalar como app (PWA) ------------------------------
+(function () {
+  const bar = $("#install-bar");
+  if (!bar) return;
+  const emApp = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  const jaDispensou = () => { try { return localStorage.getItem("v24h-install") === "off"; } catch (e) { return false; } };
+  let deferred = null;
+
+  function mostrar(dicaIos) {
+    if (emApp || jaDispensou()) return;
+    if (dicaIos) {
+      $("#install-msg").textContent = "📲 Toque em Compartilhar e “Adicionar à Tela de Início”";
+      $("#install-btn").classList.add("hidden");
+    }
+    bar.classList.remove("hidden");
+  }
+
+  // Android/Chrome: instalação nativa
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferred = e;
+    mostrar(false);
+  });
+  $("#install-btn").addEventListener("click", async () => {
+    if (!deferred) return;
+    deferred.prompt();
+    await deferred.userChoice;
+    deferred = null;
+    bar.classList.add("hidden");
+  });
+  $("#install-close").addEventListener("click", () => {
+    bar.classList.add("hidden");
+    try { localStorage.setItem("v24h-install", "off"); } catch (e) {}
+  });
+
+  // iPhone/Safari não dispara o evento acima — mostra a dica manual
+  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (iOS && !emApp) setTimeout(() => mostrar(true), 1800);
+})();
 
 // ---- Service worker (PWA / offline) ------------------------------------
 if ("serviceWorker" in navigator) {

@@ -24,14 +24,20 @@
  */
 
 // As adegas. O QR de cada porta aponta para ?adega=<slug>
+//
+// "ativa: false" ESCONDE a unidade da tela de seleção e do gerador de QR
+// (para clientes não verem uma unidade que ainda não abriu). Quando a 2ª
+// unidade inaugurar, basta trocar para "ativa: true".
 const ADEGAS = {
   "ecopark-iv": {
     nome: "Vinho 24 Horas · Unidade Ecopark IV",
-    cidade: "1ª unidade",
+    cidade: "Ecopark IV",
+    ativa: true,
   },
-  "unidade-2": {
-    nome: "Vinho 24 Horas · 2ª Unidade",
-    cidade: "em breve",
+  "j-prime-santa-ines": {
+    nome: "Vinho 24 Horas · J. Prime",
+    cidade: "Bairro Santa Inês",
+    ativa: false, // reabilitar quando a 2ª unidade inaugurar
   },
 };
 
