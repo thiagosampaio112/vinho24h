@@ -39,7 +39,7 @@ const VINHOS = [
   {
     id: "por-mi-vieja",
     codigo: "7798370260676",
-    foto: "",
+    foto: "fotos/por-mi-vieja.png",
     adegas: ["ecopark-iv"],
     nome: "Por Mi Vieja",
     produtor: "Salvador Patti",
@@ -102,7 +102,7 @@ const VINHOS = [
   {
     id: "rei-dom-joao-douro",
     codigo: "001002",
-    foto: "",
+    foto: "fotos/rei-dom-joao-douro.png",
     adegas: ["ecopark-iv"],
     nome: "Rei D. João IV DOC Douro",
     produtor: "Caves Campelo",
@@ -123,7 +123,7 @@ const VINHOS = [
   {
     id: "cantarinha-tinto",
     codigo: "5601356025942",
-    foto: "",
+    foto: "fotos/cantarinha-tinto.png",
     adegas: ["ecopark-iv"],
     nome: "Cantarinha Tinto Meio Seco",
     produtor: "Adega de Redondo",
@@ -144,7 +144,7 @@ const VINHOS = [
   {
     id: "peccato-sauvignon-blanc",
     codigo: "00974",
-    foto: "",
+    foto: "fotos/peccato-sauvignon-blanc.png",
     adegas: ["ecopark-iv"],
     nome: "Peccato di Vino Sauvignon Blanc",
     produtor: "Bodegas Aguirre",
@@ -291,7 +291,7 @@ const VINHOS = [
   {
     id: "peccato-rose",
     codigo: "00979",
-    foto: "",
+    foto: "fotos/peccato-rose.png",
     adegas: ["ecopark-iv"],
     nome: "Peccato di Vino Rosé",
     produtor: "Bodegas Aguirre",
@@ -312,7 +312,7 @@ const VINHOS = [
   {
     id: "crotta-rosado",
     codigo: "2001",
-    foto: "",
+    foto: "fotos/crotta-rosado.png",
     adegas: ["ecopark-iv"],
     nome: "Crotta Rosado Seco",
     produtor: "Familia Crotta",
