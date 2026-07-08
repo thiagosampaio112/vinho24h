@@ -201,6 +201,14 @@ body {
   display: block;
   filter: drop-shadow(0 4px 6px rgba(0,0,0,.35));
 }
+/* Fotos reais (JPG/PNG) ganham um azulejo branco pra destacar no tema escuro */
+.card-foto img {
+  width: 62px;
+  height: 100px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+}
 .card-info {
   flex: 1;
   min-width: 0;
@@ -307,6 +315,12 @@ body {
   max-width: 120px;
   object-fit: contain;
   filter: drop-shadow(0 10px 14px rgba(0,0,0,.45));
+}
+.ficha-foto img {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  max-width: 150px;
 }
 .ficha-tipo-linha { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
 .ficha-nome { font-size: 26px; color: var(--dourado-claro); line-height: 1.15; }
